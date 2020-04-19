@@ -11,10 +11,10 @@ OWL is an open source, open hardware embedded audio platform. It includes the [O
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
 ### Documentation
+* [Alchemist Getting Started](Alchemist_Getting_Started)
+* [Wizard Getting Started](Wizard_Getting_Started)
 * [Magus Desktop Getting Started](Magus_Desktop_Getting_Started)
 * [Magus Modular Getting Started](Magus_Modular_Getting_Started)
-* [Wizard Getting Started](Wizard_Getting_Started)
-* [Alchemist Getting Started](Alchemist_Getting_Started)
 
 ### Get In Touch
 
