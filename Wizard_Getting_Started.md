@@ -3,7 +3,7 @@
 ## Getting Started
 To use the Wizard, just plug it into a computer, USB charger or 9V DC (centre positive) supply. Attach a pair of headphones to the front stereo out socket.
 
-
+![Wizard Functional Diagram](https://user-images.githubusercontent.com/648870/79698548-eefe6000-8289-11ea-9d7d-2c849c07fa82.png)
 
 To change the output volume of the device, hold down the MODE button (top right corner) and turn the D knob (right side) to adjust.
 
