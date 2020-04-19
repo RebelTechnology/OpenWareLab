@@ -2,7 +2,7 @@
 
 Documentation for the OWL family of devices.
 
-The website for this project is available at https://pingdynasty.github.io/OpenWareLab/
+The website for this project is [here](https://pingdynasty.github.io/OpenWareLab/)
 
 ### About
 
@@ -10,7 +10,14 @@ OWL is an open source, open hardware embedded audio platform. It includes the [O
 
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
+### Documentation
+* [Magus Desktop Getting Started](Magus_Desktop_Getting_Started)
+* [Magus Modular Getting Started](Magus_Modular_Getting_Started)
+* [Wizard Getting Started](Wizard_Getting_Started)
+* [Alchemist Getting Started](Alchemist_Getting_Started)
 
 ### Get In Touch
 
 We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches available.
+
+
