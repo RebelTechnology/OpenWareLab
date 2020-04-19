@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+## OpenWareLab
 
-You can use the [editor on GitHub](https://github.com/pingdynasty/OpenWareLab/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Documentation for the OWL family of devices.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### About
 
-### Markdown
+OWL is an open source, open hardware embedded audio platform. It includes a [firmware](https://github.com/pingdynasty/OpenWare) codebase which runs on several hardware products, including OWL Pedal, OWL Modular, Alchemist, Wizard, Magus, BioSignals, Noctua and OWL Rack.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The OWL platform was developed by [Rebel Technology](https://www.rebeltech.org).
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+### Get In Touch
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pingdynasty/OpenWareLab/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches available.
