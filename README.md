@@ -8,7 +8,7 @@ The website for this project is available at https://pingdynasty.github.io/OpenW
 
 OWL is an open source, open hardware embedded audio platform. It includes the [OpenWare](https://github.com/pingdynasty/OpenWare) firmware codebase which runs on several hardware products, including OWL Pedal, OWL Modular, Alchemist, Wizard, Magus, BioSignals, Noctua and OWL Rack.
 
-The OWL platform was developed by [Rebel Technology](https://www.rebeltech.org).
+The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
 
 ### Get In Touch
