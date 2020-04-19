@@ -3,12 +3,9 @@
 ## Getting Started
 To use the Alchemist, just plug it into a computer, USB charger or 9V DC (centre positive) supply. Attach a pair of headphones to the front stereo out socket.
 
-
+![Alchemist Functional Diagram](https://user-images.githubusercontent.com/648870/79698500-a646a700-8289-11ea-8e15-1b7536b5788f.png)
 
 To change the output volume of the device, hold down the MODE button and turn the C knob (right side) to adjust.
-
-
-
 
 To get you started, and hopefully inspired, we have pre-loaded your Alchemist with a small selection of sound making patches. They share the same controls:
 Knob A: Tempo
