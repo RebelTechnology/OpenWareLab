@@ -10,9 +10,11 @@ This is a repository of OWL (OpenWareLaboratory) documentation. OWL is an open s
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
 ### Documentation
-* [Alchemist]](Alchemist)
+* [Alchemist](Alchemist)
 * [Wizard](Wizard)
 * [Magus](Magus)
+* [OWL Pedal](OWL_Pedal)
+* [OWL Modular](OWL_Modular)
 
 ### Get In Touch
 
