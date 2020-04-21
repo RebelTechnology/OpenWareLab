@@ -4,5 +4,5 @@ The Magus is a patchable synthesizer and effects unit based on the OWL2 board, d
 
 ### Instructions
 * [Magus Desktop Getting Started](Magus_Desktop_Getting_Started) (as [pdf](Magus Desktop Getting Started.pdf))
-* [Magus Modular Getting Started](Magus_Modular_Getting_Started) (as [pdf](Magus Modular Getting Started.pdf))
+* [Magus Eurorack Getting Started](Magus_Eurorack_Getting_Started) (as [pdf](Magus Eurorack Getting Started.pdf))
 
