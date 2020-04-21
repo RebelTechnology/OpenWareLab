@@ -10,10 +10,9 @@ This is a repository of OWL (OpenWareLaboratory) documentation. OWL is an open s
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
 ### Documentation
-* [Alchemist Getting Started](Alchemist_Getting_Started)
-* [Wizard Getting Started](Wizard_Getting_Started)
-* [Magus Desktop Getting Started](Magus_Desktop_Getting_Started)
-* [Magus Modular Getting Started](Magus_Modular_Getting_Started)
+* [Alchemist]](Alchemist)
+* [Wizard](Wizard)
+* [Magus](Magus)
 
 ### Get In Touch
 
