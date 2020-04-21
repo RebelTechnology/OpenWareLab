@@ -16,8 +16,11 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [OWL Pedal](OWL_Pedal)
 * [OWL Modular](OWL_Modular)
 
-### Get In Touch
+### Legacy
+This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page).
 
-We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches available.
+### Find Out More
+Check out our [website](https://www.rebeltech.org), in particular the [tutorials](https://www.rebeltech.org/tutorials/)!
 
-
+### Get Involved!
+We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches to explore.
