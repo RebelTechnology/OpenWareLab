@@ -23,25 +23,29 @@ example:
     [r Freq @owl A 220 880 440]
 
 defines a receiver called `Freq`, assigned to OWL parameter `A`. The output is a float in the range 220.0 to 880.0 with default value 440.0 (`r` is shorthand for `receive`).
-MIN, MAX and DEFAULT are optional. If omitted, MIN is 0, MAX is 1, and DEFAULT is calculated as the midway between the two. It is fine to declare only MIN, only MIN and MAX, all, or none.
+
+MIN, MAX and DEFAULT are optional. If omitted, MIN is 0, MAX is 1, and DEFAULT is calculated as the midway between the two. It is fine to declare only MIN and MAX, only MIN, none, or all.
 
 The compiler supports up to 24 parameters, in three groups of eight, named from A to H, AA to AH and BA to BH, but the available hardware assignments vary depending on the OWL device. Magus has 20 CV inputs/outputs
 
 Output parameters can be assigned in the same way, using `[send]` instead of `[receive]`. The compiler will add `>` to the end of the parameter name, to ensure it is recognised as an output.
 
 ### Buttons, Gates and Triggers
-For hardware that supports input and output triggers, gates, and buttons, these can be assigned with the names `B1` trhrough `B8`. Output values are `0` for off, `1` for on. Any input value greater than `0.5` will be interpreted as on. 
+For hardware that supports input and output triggers, gates, and buttons, these can be assigned with the names `B1` through `B8`. Output values from `[receive]` are `0` for *off*, `1` for *on*. Any `[send]` value greater than `0.5` will be interpreted as *on*. 
 
 ### Examples
 
-For a simple example patch that uses both input and output parameters and buttons, see e.g. this (Witch Pd Template)[https://www.rebeltech.org/patch-library/patch/Witch_Template].
+For a simple example patch that uses both input and output parameters and buttons, see e.g. this [Witch Pd Template](https://www.rebeltech.org/patch-library/patch/Witch_Template).
 
 ## MIDI
 
 Patches can send and receive MIDI messages with the usual Pd Vanilla MIDI I/O objects: `[notein]`, `[bendin]`, `[ctlin]`, `[pgmin]`, and `[noteout]`, `[bendout]`, `[ctlout]`, `[pgmout]`.
-For an example see (this patch)[https://www.rebeltech.org/patch-library/patch/PD_MIDI].
+For an example see [this patch](https://www.rebeltech.org/patch-library/patch/PD_MIDI).
 
 ## Known Bugs and Limitations
 
-MIDI input objects don't filter when given initialisation arguments: `[notein]`,`[ctlin]` et c always produce *all* messages from *all* channels.
-Raw MIDI receive and send with `[midiin]` and `[midiout]` is not yet supported.
+* MIDI input objects don't filter when given initialisation arguments: `[notein]`,`[ctlin]` et c always produce *all* messages from *all* channels.
+* Raw MIDI receive and send with `[midiin]` and `[midiout]` is not yet supported.
+* Heavy does not support [list] (workaround [here](https://forum.pdpatchrepo.info/topic/12820/replacement-for-list/3)).
+* Heavy does not support numbers in [unpack], e.g. `[unpack 0 0]` gives `Heavy only supports arguments 'f' and 's' to unpack.` Workaround is to use `f` instead, e.g. `[unpack f f]`, and if necessary prime the default values with a `[loadbang]` and `[0 0(`.
+* Heavy does not accept argument and control connections to [czero~]. In Heavy, `[czero~]` accepts only signal input. Arguments and control connections are ignored.
