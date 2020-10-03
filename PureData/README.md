@@ -22,11 +22,11 @@ example:
 
     [r Freq @owl A 220 880 440]
 
-defines a receiver called `Freq`, assigned to OWL parameter `A`. The output is a float in the range 220.0 to 880.0 with default value 440.0 (`r` is shorthand for `receive`).
+defines a receiver (`r` is shorthand for `receive`) called `Freq`, assigned to OWL parameter `A`. The output is a float in the range 220.0 to 880.0 with default value 440.0.
 
 MIN, MAX and DEFAULT are optional. If omitted, MIN is 0, MAX is 1, and DEFAULT is calculated as the midway between the two. It is fine to declare only MIN and MAX, only MIN, none, or all.
 
-The compiler supports up to 24 parameters, in three groups of eight, named from A to H, AA to AH and BA to BH, but the available hardware assignments vary depending on the OWL device. Magus has 20 CV inputs/outputs
+The compiler supports up to 24 parameters, in three groups of eight, named from A to H, AA to AH and BA to BH, but the available hardware assignments vary depending on the OWL device. Magus has 20 CV inputs/outputs, OWL Pedal, OWL Modular and Wizard have 5, Alchemist has 4. All 24 OWL parameters can also be controlled by MIDI, as each is associated with a MIDI CC controller.
 
 Output parameters can be assigned in the same way, using `[send]` instead of `[receive]`. The compiler will add `>` to the end of the parameter name, to ensure it is recognised as an output.
 

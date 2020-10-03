@@ -24,7 +24,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * Max Gen: todo, meanwhile see our excellent [tutorials](https://www.rebeltech.org/tutorials/)
 
 ## Legacy
-This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page).
+This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page) or the [OWL Digital Legacy](OWL_Digital/Legacy/) resources.
 
 ## Find Out More
 Check out our [website](https://www.rebeltech.org), in particular the [tutorials](https://www.rebeltech.org/tutorials/)!
