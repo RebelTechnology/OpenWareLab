@@ -3,24 +3,31 @@
 Documentation for the OWL family of devices.
 The website for this project is [here](https://pingdynasty.github.io/OpenWareLab/)
 -->
-### About
+## About
 
 This is a repository of OWL (OpenWareLaboratory) documentation. OWL is an open source, open hardware embedded audio platform. It includes the [OpenWare](https://github.com/pingdynasty/OpenWare) firmware codebase which runs on several hardware products, including OWL Pedal, OWL Modular, Alchemist, Wizard, Magus, BioSignals, Noctua and OWL Rack.
 
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
-### Documentation
+## Documentation
+### Devices 
 * [Alchemist](Alchemist)
 * [Wizard](Wizard)
 * [Magus](Magus)
 * [OWL Pedal](OWL_Pedal)
 * [OWL Modular](OWL_Modular)
 
-### Legacy
+### Patch Programming
+* [Pure Data](PureData)
+* Faust: documentation coming
+* C++: todo, see [API Documentation](https://www.rebeltech.org/docs/)
+* Max Gen: todo, meanwhile see our excellent [tutorials](https://www.rebeltech.org/tutorials/)
+
+## Legacy
 This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page).
 
-### Find Out More
+## Find Out More
 Check out our [website](https://www.rebeltech.org), in particular the [tutorials](https://www.rebeltech.org/tutorials/)!
 
-### Get Involved!
+## Get Involved!
 We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches to explore.
