@@ -48,4 +48,4 @@ For an example see [this patch](https://www.rebeltech.org/patch-library/patch/PD
 * Raw MIDI receive and send with `[midiin]` and `[midiout]` is not yet supported.
 * Heavy does not support [list] (workaround [here](https://forum.pdpatchrepo.info/topic/12820/replacement-for-list/3)).
 * Heavy does not support numbers in [unpack], e.g. `[unpack 0 0]` gives `Heavy only supports arguments 'f' and 's' to unpack.` Workaround is to use `f` instead, e.g. `[unpack f f]`, and if necessary prime the default values with a `[loadbang]` and `[0 0(`.
-* Heavy does not accept argument and control connections to [czero~]. In Heavy, `[czero~]` accepts only signal input. Arguments and control connections are ignored.
+* Heavy does not accept arguments and control connections to: `[rzero~]`, `[rzero_rev~]`, `[czero~]`, `[czero_rev~]`. In Heavy, these objects accept only signal inputs. Arguments and control connections are ignored.
