@@ -37,6 +37,8 @@ For hardware that supports input and output triggers, gates, and buttons, these 
 
 For a simple example patch that uses both input and output parameters and buttons, see e.g. this [Witch Pd Template](https://www.rebeltech.org/patch-library/patch/Witch_Template).
 
+A library of Heavy compatible Pure data abstractions is available [here](https://github.com/enzienaudio/heavylib)
+
 ## MIDI
 
 Patches can send and receive MIDI messages with the usual Pd Vanilla MIDI I/O objects: `[notein]`, `[bendin]`, `[ctlin]`, `[pgmin]`, and `[noteout]`, `[bendout]`, `[ctlout]`, `[pgmout]`.
@@ -46,6 +48,6 @@ For an example see [this patch](https://www.rebeltech.org/patch-library/patch/PD
 
 * MIDI input objects don't filter when given initialisation arguments: `[notein]`,`[ctlin]` et c always produce *all* messages from *all* channels.
 * Raw MIDI receive and send with `[midiin]` and `[midiout]` is not yet supported.
-* Heavy does not support [list] (workaround [here](https://forum.pdpatchrepo.info/topic/12820/replacement-for-list/3)).
-* Heavy does not support numbers in [unpack], e.g. `[unpack 0 0]` gives `Heavy only supports arguments 'f' and 's' to unpack.` Workaround is to use `f` instead, e.g. `[unpack f f]`, and if necessary prime the default values with a `[loadbang]` and `[0 0(`.
+* Heavy does not support `[list]` (workaround [here](https://forum.pdpatchrepo.info/topic/12820/replacement-for-list/3)).
+* Heavy does not support numbers in `[unpack]`, e.g. `[unpack 0 0]` gives `Heavy only supports arguments 'f' and 's' to unpack.` Workaround is to use `f` instead, e.g. `[unpack f f]`, and if necessary prime the default values with a `[loadbang]` and `[0 0(`.
 * Heavy does not accept arguments and control connections to: `[rzero~]`, `[rzero_rev~]`, `[czero~]`, `[czero_rev~]`. In Heavy, these objects accept only signal inputs. Arguments and control connections are ignored.
