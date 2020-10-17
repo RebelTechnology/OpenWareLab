@@ -4,6 +4,13 @@ Faust is a functional language for DSP. Please see its [main site](https://faust
 
 There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to Owl/Openware.
 
+Sample files are part of this repo and can be built and loaded quickly using provided upload.py script. Example call would be something like this:
+
+```
+PLATFORM=Magus ./upload.py --owl=/path/to/OwlProgram --slot=5
+```
+
+
 # Program examples
 
 ## Trivial patch
@@ -75,8 +82,8 @@ Some devices (currently only Magus) have support for outputting voltage. This is
 import("stdfaust.lib");
 
 freq     = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
-lfo_freq = hslider("LFO frequency[OWL:B]", 60, 60, 440, 1);
-lfo_out  = hbargraph("LFO>[OWL:C]", 0, -1, 1, 0.001);
+lfo_freq = hslider("LFO frequency[OWL:B]", 0.3, 0.01, 1.0, 0.01) : si.smoo;
+lfo_out  = hbargraph("LFO>[OWL:C]", -1, 1);
 
 process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
 ```
