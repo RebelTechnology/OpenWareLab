@@ -1,8 +1,8 @@
 # The language
 
-Faust is a functional language for DSP. Please see its [main site](https://faust.grame.fr/) for documentation and library reference.
+FAUST is a functional language for DSP. Please see its [main site](https://faust.grame.fr/) for documentation and library reference.
 
-There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to Owl/Openware.
+There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL/Openware.
 
 Sample files are part of this repo and can be built and loaded quickly using provided upload.py script. Example call would be something like this:
 
@@ -15,7 +15,7 @@ PLATFORM=Magus ./upload.py --owl=/path/to/OwlProgram --slot=5
 
 ## Trivial patch
 
-Simplest patch in Faust would look like this:
+Simplest patch in FAUST would look like this:
 
 ```
 process = _;
@@ -23,12 +23,12 @@ process = _;
 
 What it does is takes input from first audio channel and sends it to output without any modifications.
 
-You can compile it with online compiler at [patch library](https://www.rebeltech.org/patch-library) or build locally using [OwlLibrary](https://github.com/pingdynasty/OwlProgram)
+You can compile it with the online compiler at [patch library](https://www.rebeltech.org/patch-library) or build locally using [OwlLibrary](https://github.com/pingdynasty/OwlProgram)
 
 
 ## Display message on screen and make some noise
 
-If your device contains screen, you can use it to display a short information message. Let's try this example:
+If your device has a screen, you can use it to display a short information message. Let's try this example:
 
 ```
 declare message "Hello\nmake some noise";
@@ -38,12 +38,12 @@ import("stdfaust.lib");
 process = no.noise : *(0.5);
 ```
 
-Here first line adds metadata declaration, second line imports Faust's standard library and last sends output from white noise generator to output channel 1 with gain reduced by half.
+Here the first line adds a metadata declaration, second line imports FAUST's standard library and the last line sends output from a white noise generator to output channel 1 with gain reduced by half.
 
 
 ## Parameter input
 
-You can control patch parameters by binding them with Faust UI controls. Let's look at example patch:
+You can control patch parameters by binding them with FAUST UI controls. Let's look at an example patch:
 
 ```
 import("stdfaust.lib");
@@ -51,9 +51,9 @@ freq = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
 process = os.osc(freq);
 ```
 
-``[OWL:A]`` in parameter label is what binds your device's input to Faust parameter. Parameter ranges that you can use A-H, AA-AH, BA-BH, CA-CH, DA-DH, PUSH (for pushbutton), ButtonA-ButtonD. This is what Faust patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those of them that don't have physical control on device.
+``[OWL:A]`` in parameter label is what binds your device's input to FAUST parameter. Parameter ranges that you can use A-H, AA-AH, BA-BH, CA-CH, DA-DH, PUSH (for pushbutton), ButtonA-ButtonD. This is what FAUST patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those of them that don't have physical control on device.
 
-It's also possible to specify variable as digit from ``[OWL:0]`` to ``[OWL:39]``. This is convenient if you want to use Faust [variable substitution in lables](https://faust.grame.fr/doc/manual/index.html#variable-parts-of-a-label)
+It's also possible to specify variable as digit from ``[OWL:0]`` to ``[OWL:39]``. This is convenient if you want to use FAUST [variable substitution in labels](https://faust.grame.fr/doc/manual/index.html#variable-parts-of-a-label)
 
 Example:
 
@@ -71,12 +71,12 @@ process = par(
 
 This patch renders first 8 partials from a wave with base frequency of 60 Hz by default. Each harmonic partial has editable gain. This is called a harmonic oscillator.
 
-Faust supports several variations for its UI widgets, but with hardware we're using either knobs (often with extra control by voltage) or buttons. So effectively using ``hslider``, ``vslider`` or ``numentry`` widget give us a variable limited by upper and lower limit, while ``button``, ``togglebutton`` and ``checkbutton`` give a boolean variable with on/off state. 
+FAUST supports several variations for its UI widgets, but with hardware we're using either knobs (often with extra control by voltage) or buttons. So effectively using ``hslider``, ``vslider`` or ``numentry`` widget give us a variable limited by upper and lower limit, while ``button``, ``togglebutton`` and ``checkbutton`` give a boolean variable with on/off state. 
 
 
 ## Parameter output
 
-Some devices (currently only Magus) have support for outputting voltage. This is also available to patches in Faust. Let's see how it can be used:
+Some devices (currently only Magus) have support for outputting voltage. This is also available to patches in FAUST. Let's see how it can be used:
 
 ```
 import("stdfaust.lib");
@@ -90,7 +90,7 @@ process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
 
 This patch gives as a static sine wave tone initially. But if we connect output from patch point C with input in patch point A, we get slow frequency modulation in our audio.
 
-A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in Faust docs](https://faust.grame.fr/doc/manual/index.html#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter C.
+A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faust.grame.fr/doc/manual/index.html#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter C.
 
 
 ## MIDI
