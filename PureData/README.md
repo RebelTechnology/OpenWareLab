@@ -39,6 +39,8 @@ For a simple example patch that uses both input and output parameters and button
 
 A library of Heavy compatible Pure data abstractions is available [here](https://github.com/enzienaudio/heavylib)
 
+Also make sure to check out our excellent Pure data [tutorials](https://www.rebeltech.org/tutorials/).
+
 ## MIDI
 
 Patches can send and receive MIDI messages with the usual Pd Vanilla MIDI I/O objects: `[notein]`, `[bendin]`, `[ctlin]`, `[pgmin]`, and `[noteout]`, `[bendout]`, `[ctlout]`, `[pgmout]`.

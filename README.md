@@ -20,7 +20,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 ### Patch Programming
 * [Pure Data](PureData)
 * [FAUST](Faust)
-* C++: todo, see [API Documentation](https://www.rebeltech.org/docs/)
+* [C++](CPlusPlus)
 * Max Gen: todo, meanwhile see our excellent [tutorials](https://www.rebeltech.org/tutorials/)
 
 ## Legacy
