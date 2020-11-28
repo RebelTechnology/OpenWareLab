@@ -21,7 +21,6 @@ OWL Patches are compiled with single precision floats, not doubles. Use of doubl
 ## Language Standard
 OWL Patches are written in standard C++, compiled using the Gnu ARM gcc cross-compiler, which supports many C++0x and C++11 language features. If you want your patches to compile for other platforms, you may need to be more conservative with newer language features. In particular, Visual Studio C++ doesn't support some C99 features such as variable length arrays.
 
-
 ## Naming Convention
 Classes should be named in UpperCamelCase; methods, functions and variables in lowerCamelCase.
 
@@ -30,7 +29,6 @@ Patches should be named after their function, e.g. FuzzPatch, and be located in 
 ## Patch Lifecycle
 
 When the patch constructor is called, the blocksize, sample rate and number of channels will always be known. All memory allocation and setup should be done in the constructor, not on the first call to `processAudio()`.
-
 
 ## Inputs and Outputs
 

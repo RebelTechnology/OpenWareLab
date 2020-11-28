@@ -26,6 +26,9 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 ## Legacy
 This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page) or the [OWL Digital Legacy](OWL_Digital/Legacy/) resources.
 
+## Tools
+Firmware upgrade and calibration pages [are here](https://pingdynasty.github.io/OwlWebControl/).
+
 ## Find Out More
 Check out our [website](https://www.rebeltech.org), in particular the [tutorials](https://www.rebeltech.org/tutorials/)!
 
