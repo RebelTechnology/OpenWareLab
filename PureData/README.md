@@ -31,7 +31,7 @@ The compiler supports up to 24 parameters, in three groups of eight, named from 
 Output parameters can be assigned in the same way, using `[send]` instead of `[receive]`. The compiler will add `>` to the end of the parameter name, to ensure it is recognised as an output.
 
 ### Buttons, Gates and Triggers
-For hardware that supports input and output triggers, gates, and buttons, these can be assigned with the names `B1` through `B8`. Output values from `[receive]` are `0` for *off*, `1` for *on*. Any `[send]` value greater than `0.5` will be interpreted as *on*. 
+For hardware that supports input and output triggers, gates, and buttons, these can be assigned with the names `B1` through `B8`, or `Push` for PUSHBUTTON. Output values from `[receive]` are `0` for *off*, `1` for *on*. Any `[send]` value greater than `0.5` will be interpreted as *on*. 
 
 ### Examples
 
