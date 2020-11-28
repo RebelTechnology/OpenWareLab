@@ -9,36 +9,33 @@ OWL Patches supports user allocated heap memory (new/delete and malloc/free), us
 
 
 ## Library Support
-All functions defined in the standard math.h library are available, but processing-intensive functions should be avoided if possible, or their use should be minimised. The ARM CMSIS-DSP libraries are also available to use, with very useful functionality including FFT, FIR and convolution. Some standard math.h functions have been replaced with ARM optimised code:
-
-* sin() / sinf()
-* cos() / cosf()
-* exp() / expf()
-* pow() / powf()
-
+The OWL Patch API includes many efficient and easy to use implementations of common DSP classes.
+Additionally, all functions defined in the standard math.h library are available. Some standard math.h functions have been replaced with ARM optimised code, such as `sin()`, `cos()`, exponential and logarithmic functions.
 OWL Patches are compiled with single precision floats, not doubles. Use of doubles should be avoided.
 
 ## Language Standard
 OWL Patches are written in standard C++, compiled using the Gnu ARM gcc cross-compiler, which supports many C++0x and C++11 language features. If you want your patches to compile for other platforms, you may need to be more conservative with newer language features. In particular, Visual Studio C++ doesn't support some C99 features such as variable length arrays.
+To make efficient code with minimal overheads, certain things should be avoided. In particular exceptions, and libraries that use them such as the Standard Template Library (std::vector, std::string et c).
 
 ## Naming Convention
 Classes should be named in UpperCamelCase; methods, functions and variables in lowerCamelCase.
 
-Patches should be named after their function, e.g. FuzzPatch, and be located in a .hpp file called e.g. FuzzPatch.hpp. It is fine to use several files and `#include` the headers, both with C and C++ implementations. All `.c` and `.cpp` files in the patch directory will be compiled as separate compilation units and linked in.
+Patches should be named after their function, e.g. `FuzzPatch`, and be located in a .hpp file called e.g. `FuzzPatch.hpp`. It is fine to use several files and `#include` the headers, both with C and C++ implementations. All `.c` and `.cpp` files in the patch directory will be compiled as separate compilation units and linked in.
 
 ## Patch Lifecycle
 
 When the patch constructor is called, the blocksize, sample rate and number of channels will always be known. All memory allocation and setup should be done in the constructor, not on the first call to `processAudio()`.
 
 ## Inputs and Outputs
-
 ### Parameters
 
-In the patch constructor, the patch should register the name and assignment of the parameters that it uses.
+In the patch constructor, the patch should register the name and assignment of the parameters that it uses. Output parameters (e.g CV outputs) should be suffixed with a `>` character.
 
 ```
     registerParameter(PARAMETER_A, "Gain");
+    registerParameter(PARAMETER_G, "LFO>");
 ```
+
 In the patch, a float value in the range 0.0 (inclusive) to 1.0 (exclusive) represents the parameter setting, and can be retrieved like so:
 
 ```
@@ -74,7 +71,69 @@ Output trigger/gates can be controlled with `setButton()`:
   setButton(PUSHBUTTON, true);
 ```
 
-## MIDI
+
+### Audio
+The first class you should get familiar with is `FloatArray`, which is contains a channel of audio. It is delivered to you in a `SampleBuffer` in the `processAudio()` callback.
+
+```
+  void processAudio(AudioBuffer &buffer){
+    FloatArray left = buffer.getSamples(LEFT_CHANNEL);
+    FloatArray right = buffer.getSamples(RIGHT_CHANNEL);
+```
+
+`FloatArray` is written so that you can pretend that it is a an actual array of floats, or a `float*`.
+
+```
+   left[i] = right[i];
+```
+
+The job of an OWL Patch is to replace the incoming audio samples with some new output audio. The same `FloatArray` object is used for both purposes: first you read the samples, then you write them. A simple stereo gain patch could look like this:
+
+```
+class GainPatch : public Patch {
+public:
+  GainPatch(){
+    registerParameter(PARAMETER_A, "Gain");
+  }
+
+  void processAudio(AudioBuffer &buffer){
+    float gain = getParameterValue(PARAMETER_A);
+    FloatArray left = buffer.getSamples(LEFT_CHANNEL);
+    FloatArray right = buffer.getSamples(RIGHT_CHANNEL);
+    for(int i=0; i<buffer.getSize(); ++i){
+      left[i] = gain*left[i];
+      right[i] = gain*right[i];
+    }
+  }
+};
+```
+
+`FloatArray` defines many useful methods. In this case, instead of iterating over each sample in the buffer, we could have just called:
+
+```
+   left.multiply(gain);
+```
+to scale the level of every sample in the buffer. For more information see the [FloatArray API](https://www.rebeltech.org/docs/classFloatArray.html). FloatArrays are also very useful for other things, like delay buffers, samples, filter coefficients. To allocate a new FloatArray on the heap, use its static `create()` and `destroy()` methods, and make sure to only do this in the scope of the patch constructor and destructor. The same applies to many other classes in our library. On an embedded device, we don't want to allocate any memory in the audio processing functions, because this will lead to fragmentation and a heap of problems. So to speak. So instead we call our `create()` and `destroy()` functions like this:
+
+```
+class EchoPatch : public Patch {
+private:
+  FloatArray buffer;
+public:
+  EchoPatch(){
+    registerParameter(PARAMETER_A, "Gain");
+    buffer = FloatArray::create(1024); // create a 1024 samples long buffer
+  }
+  ~EchoPatch(){
+    FloatArray::destroy(buffer);
+  }
+};
+```
+
+FloatArray is a very light-weight object (it only wraps a `float*` and a `size_t`) which is why we use value semantics instead of pointers or references in this case. Other objects, such as [BiquadFilter](https://www.rebeltech.org/docs/classBiquadFilter.html) (used for cascaded high/low/notch/shelf filters), are passed by pointer.
+
+
+### MIDI
 
 Incoming MIDI messages are passed on to the `processMidi()` callback method. Override this to provide your own MIDI handling procedures:
 
@@ -91,3 +150,16 @@ To send MIDI messages, use `sendMidi(MidiMessage msg)`. The MidiMessage class ha
 ```
 
 See the [MidiMessage API](https://www.rebeltech.org/docs/classMidiMessage.html) for more useful information.
+
+## Screen Patches
+For hardware that have an OLED screen (such as Magus) you can program its screen buffer directly in a callback method. To enable the callback, instead of extending the `Patch` base class, extend `MonocromeScreenPatch`, and overload its `processScreen()` callback:
+
+```
+class MyScreenPatch : public MonchromeScreenPatch {
+    void processScreen(MonochromeScreenBuffer& screen){
+       ...
+    }
+};
+```
+
+Most common `draw` functions are available in the ScreenBuffer class, see the [ScreenBuffer API](https://www.rebeltech.org/docs/classScreenBuffer.html) for details.
