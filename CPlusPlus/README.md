@@ -1,11 +1,11 @@
 ## C++ OWL Patches
 
-To use the OWL Patch API, all you have to do is create a class that derives from Patch and implement the processAudio() method. See the [API Documentation](https://www.rebeltech.org/docs/) for details, 
+To make an OWL Patch, all you have to do is create a class that derives from Patch and implement the `processAudio()` method. See the [API Documentation](https://www.rebeltech.org/docs/) for reference.
 
 
 ## Memory Management
 
-OWL Patches supports user allocated heap memory (new/delete and malloc/free), using a custom allocation method. If heap is used, then all heap memory must be allocated in the patch constructor, and care must be taken to free all used memory in the destructor.
+OWL Patches supports user allocated heap memory (new/delete and malloc/free), using a custom allocation method. If heap is used, then all heap memory must be allocated in the patch constructor, and care must be taken to free all used memory in the destructor. Most classes in the OWL Patch Library provide static `create()` and `destroy()` methods, which should be used instead of RAII.
 
 
 ## Library Support
