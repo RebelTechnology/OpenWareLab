@@ -73,7 +73,7 @@ Output trigger/gates can be controlled with `setButton()`:
 
 
 ### Audio
-The first class you should get familiar with is `FloatArray`, which is contains a channel of audio. It is delivered to you in a `SampleBuffer` in the `processAudio()` callback.
+The first class you should get familiar with is `FloatArray`, which contains a channel of audio. It is delivered to you in a `SampleBuffer` in the `processAudio()` callback.
 
 ```
   void processAudio(AudioBuffer &buffer){
@@ -84,10 +84,10 @@ The first class you should get familiar with is `FloatArray`, which is contains 
 `FloatArray` is written so that you can pretend that it is a an actual array of floats, or a `float*`.
 
 ```
-   left[i] = right[i];
+   float sample = left[i];
 ```
 
-The job of an OWL Patch is to replace the incoming audio samples with some new output audio. The same `FloatArray` object is used for both purposes: first you read the samples, then you write them. A simple stereo gain patch could look like this:
+The job of an OWL Patch is to replace the incoming audio samples with some new output audio. The same `FloatArray` object is used for both purposes: first you read the samples, then you write them. A simple stereo gain patch that simply multiplies each sample by a scalar could look like this:
 
 ```
 class GainPatch : public Patch {
@@ -113,7 +113,9 @@ public:
 ```
    left.multiply(gain);
 ```
-to scale the level of every sample in the buffer. For more information see the [FloatArray API](https://www.rebeltech.org/docs/classFloatArray.html). FloatArrays are also very useful for other things, like delay buffers, samples, filter coefficients. To allocate a new FloatArray on the heap, use its static `create()` and `destroy()` methods, and make sure to only do this in the scope of the patch constructor and destructor. The same applies to many other classes in our library. On an embedded device, we don't want to allocate any memory in the audio processing functions, because this will lead to fragmentation and a heap of problems. So to speak. So instead we call our `create()` and `destroy()` functions like this:
+to scale the level of every sample in the buffer. For more information see the [FloatArray API](https://www.rebeltech.org/docs/classFloatArray.html).
+
+FloatArrays are also very useful for other things, like delay buffers, samples, filter coefficients. To allocate a new FloatArray on the heap, use its static `create()` and `destroy()` methods, and make sure to only do this within the call stack of the patch constructor and destructor. The same applies to many other classes in our library. On an embedded device, we don't want to allocate any memory in the audio processing functions, because this will lead to fragmentation and a heap of problems. So to speak. So instead we call our `create()` and `destroy()` functions like this:
 
 ```
 class EchoPatch : public Patch {
@@ -122,7 +124,8 @@ private:
 public:
   EchoPatch(){
     registerParameter(PARAMETER_A, "Gain");
-    buffer = FloatArray::create(1024); // create a 1024 samples long buffer
+    // create a 1024 samples long buffer
+    buffer = FloatArray::create(1024);
   }
   ~EchoPatch(){
     FloatArray::destroy(buffer);
@@ -130,7 +133,7 @@ public:
 };
 ```
 
-FloatArray is a very light-weight object (it only wraps a `float*` and a `size_t`) which is why we use value semantics instead of pointers or references in this case. Other objects, such as [BiquadFilter](https://www.rebeltech.org/docs/classBiquadFilter.html) (used for cascaded high/low/notch/shelf filters), are passed by pointer.
+FloatArray is a very light-weight object (it only wraps a `float*` and a `size_t`) which is why we use value semantics instead of pointers or references. Other objects, such as [BiquadFilter](https://www.rebeltech.org/docs/classBiquadFilter.html) (used for cascaded high/low/notch/shelf filters), are passed by pointer.
 
 
 ### MIDI
@@ -152,7 +155,7 @@ To send MIDI messages, use `sendMidi(MidiMessage msg)`. The MidiMessage class ha
 See the [MidiMessage API](https://www.rebeltech.org/docs/classMidiMessage.html) for more useful information.
 
 ## Screen Patches
-For hardware that have an OLED screen (such as Magus) you can program its screen buffer directly in a callback method. To enable the callback, instead of extending the `Patch` base class, extend `MonocromeScreenPatch`, and overload its `processScreen()` callback:
+For hardware that have an OLED screen (such as Magus) you can write to its screen buffer directly in a callback method. To enable the callback, instead of extending the `Patch` base class, extend `MonochromeScreenPatch`, and overload its `processScreen()` callback:
 
 ```
 class MyScreenPatch : public MonchromeScreenPatch {
@@ -162,4 +165,4 @@ class MyScreenPatch : public MonchromeScreenPatch {
 };
 ```
 
-Most common `draw` functions are available in the ScreenBuffer class, see the [ScreenBuffer API](https://www.rebeltech.org/docs/classScreenBuffer.html) for details.
+Most common `draw` functions are available in the ScreenBuffer class, such as `drawLine()`, `drawCircle()` and `drawRectangle()`, and methods for writing text. See the [ScreenBuffer API](https://www.rebeltech.org/docs/classScreenBuffer.html) for details.
