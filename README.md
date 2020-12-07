@@ -21,7 +21,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [Pure Data](PureData)
 * [FAUST](Faust)
 * [C++](CPlusPlus)
-* Max Gen: todo, meanwhile see our excellent [tutorials](https://www.rebeltech.org/tutorials/)
+* [Max Gen~](MaxGen)
 
 ## Legacy
 This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page) or the [OWL Digital Legacy](OWL_Digital/Legacy/) resources.
