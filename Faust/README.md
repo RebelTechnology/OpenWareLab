@@ -1,14 +1,31 @@
-# The language
+# The Language
 
 FAUST is a functional language for DSP. Please see its [main site](https://faust.grame.fr/) for documentation and library reference.
 
 There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL/Openware.
 
-Sample files are part of this repo and can be built and loaded quickly using provided upload.py script. Example call would be something like this:
+Sample files are part of this repo and can be built and loaded quickly in any of three different ways:
+ - Using our [online compiler](https://www.rebeltech.org/patch-library/patches/my-patches/)
+ - Offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) Makefile
+ - Offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) and the provided `upload.py` script
+
+To compile a patch online (recommended), open the [Patch Library](https://www.rebeltech.org/patch-library/) with a Web MIDI enabled browser (e.g. Chrome), log in (create an account if necessary), go to [My Patches](https://www.rebeltech.org/patch-library/patches/my-patches/), click Create patch, and upload the Faust file or files that you want to try. Click `Save and Compile`, wait for compilation to finish, click `Connect To Device`, and then click `Load` to run the patch on the device. If you want to store it in a memory slot, click `Store` and select which slot to store it in.
+
+To compile a patch offline, download [OwlProgram](https://github.com/pingdynasty/OwlProgram) and follow the installation and usage instructions provided. You can then compile and run a patch on the device with this type of command:
 
 ```
-PLATFORM=Magus ./upload.py --owl=/path/to/OwlProgram --slot=5
+make PATCHSOURCE=mypatchdirectory FAUST=mypatchname run
 ```
+
+This compiles the patch and sends it to the device to run from RAM, without storing. Here `mypatchname` is the name of your `.dsp` file without the `.dsp`, and `mypatchdirectory` is the folder you've got your patch files in.
+
+You can also use the provided upload.py script. Example call would be something like this:
+
+```
+./upload.py --owl=/path/to/OwlProgram --slot=5
+```
+
+This compiles the patch and stores it on the device in memory slot 5.
 
 
 # Program examples
@@ -118,7 +135,7 @@ After connecting your MIDI controller, you should be able to play some notes and
 
 ## V/Oct control
 
-This feature requires calibrating your device to have accurate V/Oct tracking. Unfortunately, current firmware (20.7) doesn't support such calibration. It's very likely that it will be added in the next release (at least for Magus).
+You can also use the audio inputs and outputs for 1 Volt per octave CV, for tuning oscillators and filters, and CV sequencing. This works on devices with DC-coupled audio such as Lich, Magus and OWL Modular, and requires calibrating your device to have accurate V/Oct tracking.
 
 Here's how you can use CV for controlling oscillator frequency:
 
@@ -133,8 +150,7 @@ tune = hslider("Tune[OWL:A]", 0, -2, 2, 0.01);
 process = sample2hertz(tune) : os.oscs;
 ```
 
-It's also possible to output CV. This also requires a calibrated device to be actually useful.
-
+It's also possible to output CV.
 Let's write a simple sequencer:
 
 ```
