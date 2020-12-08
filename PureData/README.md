@@ -5,7 +5,7 @@ OpenWare devices are capable of running Pure Data patches that have been compile
 Currently Pd extensions are not supported, only (most) Pd Vanilla objects. See this [list of supported objects](SupportedObjects.md). Notably `expr`, `expr~` and `vline` are not currently supported.
 
 ### Instructions
-The easiest way to run a Pure Data patch on an OWL device is to use the online compiler. Go to [the patch library](https://www.rebeltech.org/patch-library/patches/my-patches/) and, if necessary, create an account. Then click on My Patches, Create patch, and upload all .pd files that your patch requires. Make sure to specify Compilation Type `pd`, and select the correct Main File (your top level Pd file).
+The easiest way to run a Pure Data patch on an OWL device is to use the online compiler. Go to [the patch library](https://www.rebeltech.org/patch-library/patches/my-patches/) and, if necessary, create an account. Then click on My Patches, Create patch, and upload all .pd files that your patch requires. Make sure to specify Compilation type `pd`, and select the correct Main File (your top level Pd file).
 
 You can also compile Pd patches offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) and a local installation of [hvcc](https://github.com/pingdynasty/hvcc.git) (the Heavy compiler; use our fork to take advantage of OWL-specific features and bug fixes). For details on using OwlProgram, see the project readme.
 

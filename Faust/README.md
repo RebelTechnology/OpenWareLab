@@ -9,7 +9,7 @@ Sample files are part of this repo and can be built and loaded quickly in any of
  - Offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) Makefile
  - Offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) and the provided `upload.py` script
 
-To compile a patch online (recommended), open the [Patch Library](https://www.rebeltech.org/patch-library/) with a Web MIDI enabled browser (e.g. Chrome), log in (create an account if necessary), go to [My Patches](https://www.rebeltech.org/patch-library/patches/my-patches/), click Create patch, and upload the Faust file or files that you want to try. Select compilation type `pd`. Click `Save and Compile`, wait for compilation to finish, click `Connect To Device`, and then click `Load` to run the patch on the device. If you want to store it in a memory slot, click `Store` and select which slot to store it in.
+To compile a patch online (recommended), open the [Patch Library](https://www.rebeltech.org/patch-library/) with a Web MIDI enabled browser (e.g. Chrome), log in (create an account if necessary), go to [My Patches](https://www.rebeltech.org/patch-library/patches/my-patches/), click Create patch, and upload the Faust file or files that you want to try. Select compilation type `faust`. Click `Save and Compile`, wait for compilation to finish, click `Connect To Device`, and then click `Load` to run the patch on the device. If you want to store it in a memory slot, click `Store` and select which slot to store it in.
 
 To compile a patch offline, download [OwlProgram](https://github.com/pingdynasty/OwlProgram) and follow the installation and usage instructions provided. You can then compile and run a patch on the device with this type of command:
 
