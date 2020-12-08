@@ -14,6 +14,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [Alchemist](Alchemist)
 * [Wizard](Wizard)
 * [Magus](Magus)
+* [Lich](Lich)
 * [OWL Pedal](OWL_Pedal)
 * [OWL Modular](OWL_Modular)
 
