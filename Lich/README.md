@@ -1,6 +1,6 @@
 ### Lich
 
-The Lich is a Eurorack synthesizer and effects unit based on the OWL2 digital board. I has been designed by Rebel Technology and Befaco, and is manufactured by Befaco.
+The Lich is a Eurorack synthesizer and effects unit based on the OWL2 digital board. Lich has been designed by Rebel Technology and Befaco, and is manufactured by Befaco.
 
 ### Resources
 * [Lich Product Page](https://www.befaco.org/lich/)
