@@ -70,7 +70,7 @@ process = os.osc(freq);
 
 ``[OWL:A]`` in parameter label is what binds your device's input to FAUST parameter. Parameter ranges that you can use A-H, AA-AH, BA-BH, CA-CH, DA-DH, PUSH (for pushbutton), ButtonA-ButtonD. This is what FAUST patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those of them that don't have physical control on device.
 
-It's also possible to specify variable as digit from ``[OWL:0]`` to ``[OWL:39]``. This is convenient if you want to use FAUST [variable substitution in labels](https://faust.grame.fr/doc/manual/index.html#variable-parts-of-a-label)
+It's also possible to specify variable as digit from ``[OWL:0]`` to ``[OWL:39]``. This is convenient if you want to use FAUST [variable substitution in labels](https://faustdoc.grame.fr/manual/syntax/#variable-parts-of-a-label)
 
 Example:
 
@@ -107,7 +107,7 @@ process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
 
 This patch gives as a static sine wave tone initially. But if we connect output from patch point C with input in patch point A, we get slow frequency modulation in our audio.
 
-A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faust.grame.fr/doc/manual/index.html#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter C.
+A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter C.
 
 
 ## MIDI
