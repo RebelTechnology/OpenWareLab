@@ -9,13 +9,19 @@ To create an OWL Gen patch using our online compiler, open the [Patch Library](h
 * [Gen Template Patch](https://www.rebeltech.org/patch-library/patch/GenTemplate)
 * [Gen MIDI Test](https://www.rebeltech.org/patch-library/patch/Gen_MIDI_Test)
 
+
+## Signal Inputs and Outputs
+
+Audio signals enter and leave the patch by `in` and `out` objects; index 1 and 2 correspond to left and right audio inputs. Full scale signals are in the range -1 to 1.
+
+
 ## Input Parameters
 
-Input parameters are automatically assigned based on their names: A, B, C, et c. In Max Gen, `E` represents Euler's number, so instead we use `Exp` to assign to OWL parameter E. Buttons and input trigger/gates can be assigned with `ButtonA`, `ButtonB`, `ButtonC` and `ButtonD`.
+Input parameters are automatically assigned based on their names: A, B, C, D, et c. In Max Gen, `E` represents Euler's number, so instead we use `Exp` to assign to OWL parameter E. Buttons and input trigger/gates can be assigned with `ButtonA`, `ButtonB`, `ButtonC` and `ButtonD`. If you don't specify min, max and default attributes then the defaults are: `min 0`, `max 1`, and `default` is halfways between min and max.
 
 ## Output Parameters
 
-To send a signal to the CV outputs of your device, simply add one or more extra audio outputs to your gen patch. These will be automatically assigned to CV output parameters: Output 3 will go to output parameter F, out 4 to parameter G et c.
+To send a signal to the CV outputs of your device, simply add one or more extra audio outputs to your gen patch. These will be automatically assigned to CV output parameters: Output 3 will go to output parameter F, out 4 to parameter G et c. Signal values from 0 to 1 are converted to full scale CV output.
 
 
 ## MIDI
