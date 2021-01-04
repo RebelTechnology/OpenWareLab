@@ -19,7 +19,7 @@ Just write this to a new file, save it as a **.dsp** file and upload it to the [
 
 ### Explanation
 
-The `no.noise` function produces random values. Because the noise element is at the end of the chain, its output gets dircetly send to the audio output.
+The `no.noise` function produces random values. Because the noise element is at the end of the chain, its output gets directly send to the audio output.
 
 ## Noise Shaping
 Okay, to be honest, this is quite boring. Let's do something about it. Maybe shape the sound. But first, the noise might be quite loud. We can lower the amplitude by simply multiplying the signal with a number between 0 and 1.0.
