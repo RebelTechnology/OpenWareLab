@@ -178,3 +178,9 @@ with {
 ```
 
 First output generates CV pitch, second generates gates. Base note and tempo can be changed with parameters.
+
+
+# Tutorials
+
+1. [Getting Started](FaustTutorial1_GettingStarted.html)
+2. [Dual VCA](FaustTutorial2_DualVCA.html)
