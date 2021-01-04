@@ -1,7 +1,7 @@
 # Faust Tutorial 2: Dual VCA and Envelope Follower
 The first tutorial can be found in the [GitHub repository](https://github.com/pingdynasty/OpenWareLab/blob/master/Faust/FaustTutorial1_GettingStarted.md) or on the [OpenWareLab website](https://www.openwarelab.org/Faust/FaustTutorial1_GettingStarted.html)
 
-**Note:** this tutorial / Faust program was developed and tested on the Lich.
+**Note:** this tutorial / Faust program was developed and testet on the Lich.
 
 ### Uploading and Testing
 Save the program as a **.dsp** file and upload it at the [Rebeltech Patch Library](https://www.rebeltech.org/patch-library/create-patch). Hit compile and load or store it onto your device. To test and develop your Faust programs, you can use the [Faust Online IDE](https://faustide.grame.fr/).
@@ -57,7 +57,7 @@ process = (vca_a * (1-b1) * _), (vca_b * (1-b2) * _);
 ```
 
 ## Envelope Follower Output
-The Lich and Magus feature CV outputs. Adressing thoose and sending a signal is not so easy in Faust, but still possible. First, we use the `hbargraph("name",min,max)` UI element to define a kind of output port. To map it to the physical output we have to include **>[OWL:X]** where **X** is the output parameter. On Lich and Wizard, this must be `F` or `G`, corresponding to CV out 1 and 2 respectively. On Magus, any of the 20 CV ports can be either an input or an output. To designate the parameter as an output, we add a `>` right angle to the end of the parameter name.
+The Lich and Magus feature CV outputs. Adressing thoose and sending a signal is not so easy in Faust, but still possible. First, we use is the `hbargraph("name",min,max)` UI element to to define a kind of output port. To map this port the physical output we have to include **>[OWL:X]** where **X** is the port (F or G on Lich).
 
 Second, we have to route a signal to the `hbargraph`. We do this with the `attach()` function. You can read the [documentation](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) to see how it works in detail.
 

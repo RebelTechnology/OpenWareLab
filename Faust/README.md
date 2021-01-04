@@ -2,7 +2,7 @@
 
 FAUST is a functional language for DSP. Please see its [main site](https://faust.grame.fr/) for documentation and library reference.
 
-There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL/Openware. But we have an ongoing tutorial series for learning FAUST on OWL, too:
+There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL and the OpenWare firmware. But we have an ongoing tutorial series for learning FAUST on OWL, too:
 
  1. [Getting Started](Tutorial/01_GettingStarted)
  2. [Dual VCA](Tutorial/02_DualVCA)
