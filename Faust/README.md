@@ -2,7 +2,10 @@
 
 FAUST is a functional language for DSP. Please see its [main site](https://faust.grame.fr/) for documentation and library reference.
 
-There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL/Openware.
+There's lots of detailed info and tutorials, so this document won't cover that. Instead we'll focus on features that are specific to OWL/Openware. But we have an ongoing tutorial series for learning FAUST on OWL, too:
+
+ 1. [Getting Started](Tutorial/01_GettingStarted)
+ 2. [Dual VCA](Tutorial/02_DualVCA)
 
 Sample files are part of this repo and can be built and loaded quickly in any of three different ways:
  - Using our [online compiler](https://www.rebeltech.org/patch-library/patches/my-patches/)
@@ -93,21 +96,22 @@ FAUST supports several variations for its UI widgets, but with hardware we're us
 
 ## Parameter output
 
-Some devices (currently only Magus) have support for outputting voltage. This is also available to patches in FAUST. Let's see how it can be used:
+Some devices have support for CV outputs. This is also available to patches in FAUST. Let's see how it can be used:
 
 ```
 import("stdfaust.lib");
 
 freq     = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
 lfo_freq = hslider("LFO frequency[OWL:B]", 0.3, 0.01, 1.0, 0.01) : si.smoo;
-lfo_out  = hbargraph("LFO>[OWL:C]", -1, 1);
+lfo_out  = hbargraph("LFO>[OWL:F]", -1, 1);
 
 process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
 ```
 
-This patch gives as a static sine wave tone initially. But if we connect output from patch point C with input in patch point A, we get slow frequency modulation in our audio.
+This patch produces a static sine wave tone initially. But if we connect output from patch point `F` with the input on patch point `A`, then we get a slow frequency modulation in our audio.
 
-A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter C.
+A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter F.
+Note that output parameters are designated with a trailing '>' in the parameter name, as in `LFO>` above. On the Magus, any of the 20 parameters can be designated either inputs or outputs. On Wizard and Lich, there are two fixed CV outputs, assigned to parameters `F` and `G`.
 
 
 ## MIDI
