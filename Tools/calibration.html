@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>OpenWareLaboratory</title>
+  <script src="jquery.min.js"></script>
+  <script src="midiclient.js"></script>
+  <script src="OpenWareMidiControl.js"></script>
+  <script src="owlcmd.js"></script>
+  <script src="calibration.js"></script>
+  <style>
+    td { text-align: center; }
+  </style>
+  <script>
+    function loadTestPatch(){
+	HoxtonOwl.midiClient.sendCc(7, 127); // set max volume
+	sendProgramFromUrl('https://www.rebeltech.org/api/builds/5fb33858c4b91d679aecd9b9?format=sysx&amp;download=1')
+	    .then(function(){ sendProgramRun(); }, function(err){ console.error(err); });			    
+    }
+    function confirmErase(){
+	if(confirm('Are you sure you want to erase all settings and patches?')){
+	    HoxtonOwl.midiClient.sendSysexCommand(OpenWareMidiSysexCommand.SYSEX_FLASH_ERASE);
+	    log('Settings and patches erased');
+	}else{
+	    log('Settings and patches not erased');	    
+	}	    
+    }
+    function calculateScalar(s1, s2, v1, v2){
+	return (v1 - v2) / (s1 - s2);
+    }
+    function calculateOffset(s1, s2, v1, v2){
+	s = calculateScalar(s1, s2, v1, v2);
+	a = (s1 - v1/s)
+	b = (s2 - v2/s)
+	console.log("a="+ a +" b="+ b +" avg="+ (a + b)/2);
+	return (a + b)/2;
+    }
+    function tohex(f){
+	// ensure negative numbers come out right
+	return (parseInt(f*65535) >>> 0).toString(16); // I have no idea why this works
+    }
+    function calibrateOut(f){
+	// f = document.getElementById('calibration');
+	s1 = 0.5
+	s2 = -0.5
+	v1 = f['v1'].value;
+	v2 = f['v2'].value;
+	o = calculateOffset(s1, s2, v1, v2);
+	s = calculateScalar(s1, s2, v1, v2);
+	f['out-offset'].value = o;
+	f['out-scalar'].value = s;
+	sendSetting('OS', s*65535)
+	sendSetting('OO', o*65535)
+    }
+    function calibrateIn(f){
+	s1 = f['s1'].value/1000;
+	s2 = f['s2'].value/1000;
+	v1 = f['v1'].value;
+	v2 = f['v2'].value;
+	o = calculateOffset(s1, s2, v1, v2);
+	s = calculateScalar(s1, s2, v1, v2);
+	f['in-offset'].value = o;
+	f['in-scalar'].value = s;
+	sendSetting('IS', s*65535)
+	sendSetting('IO', o*65535)
+    }
+  </script>
+</head>
+
+  <h2>OpenWareLaboratory</h2>
+
+  <div>
+    <h3>Status</h3>
+    <p id="ourstatus">Not Connected</p>
+    <p>Patch loaded: <span id="patchname">&nbsp;</span></p>
+    <p>Module reading: <span id="patchmessage">&nbsp;</span></p>
+  </div>
+
+  <div>
+    <h3>Calibrate</h3>
+    <form id="calibration">   
+      <ol>
+	<li>Connect an OWL device (reload page if necessary)</li>
+	<li>Click <button type="button" onclick="loadTestPatch();">Load test patch</button></li>
+	<li>Connect the Left output to the Left input, and simultaneously to a voltmeter. We recommend a three digit voltimeter</li>
+	<li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(27, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(27, 0);">Button 1</button> and copy the value from the multimeter to the <i>High Voltage</i> box</li>
+	<p>
+	  High Voltage <input name="v1" type="number" step="any"/> Volt
+	</p>
+	<li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(28, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(28, 0);">Button 2</button> and copy the value from the multimeter to the <i>Low Voltage</i> box</li>
+	<p>
+	  Low Voltage <input name="v2" type="number" step="any"/> Volt
+	</p>
+	
+	<li>Click <button onclick="calibrateOut(this.form); calibrateIn(this.form); return false;">Calibrate</button></li>
+	<input id="sample-high" name="s1" type="number" step="any" hidden="true"/>
+	<input id="sample-low" name="s2" type="number" step="any" hidden="true"/>
+
+	<p>
+	  Output Offset <input name="out-offset" type="number" step="any"/>
+	  Output Scalar <input name="out-scalar" type="number" step="any"/>
+	</p>
+	<p>
+	  Input Offset <input name="in-offset" type="number" step="any"/>
+	  Input Scalar <input name="in-scalar" type="number" step="any"/>
+	</p>
+		<li>Click <button onclick="HoxtonOwl.midiClient.sendPc(1); HoxtonOwl.midiClient.sendSysexCommand(OpenWareMidiSysexCommand.SYSEX_SETTINGS_STORE); return false;">Store Settings</button></li>
+      </ol>
+    </form>
+    <p>
+      The module is now calibrated and the settings are stored in memory. You can test the calibration with a V/oct voltage source and Harmonic Oscillator patch or another patch with a V/Oct input and output such as MIDI Modular
+    </p>    
+  </div>
+
+  <div>
+    <h3>Test Calibration</h3>
+    <ol>
+      <li>Connect an OWL device (reload page if necessary)</li>
+      <li>Click <button type="button" onclick="loadTestPatch();">Load test patch</button></li>
+      <li>Connect the Left output to the Left input, and simultaneously to a voltmeter. We recommend a three digit voltimeter</li>
+      <li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(29, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(29, 0);">Test High</button> and verify that both Module and voltmeter readings are near +5 Volt</li>
+      <p>Module High reading: <input id="test-high">&nbsp;</input> Volt</p>
+      <li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(30, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(30, 0);">Test Low</button> and verify that both Module and voltmeter readings are near -5 Volt</li>
+      <p>Module Low reading: <input id="test-low">&nbsp;</input> Volt</p>
+    </ol>
+  </div>
+
+  <div hidden="true">
+    <h3>Query</h3>
+    <p>MIDI In
+      <select id="midiInputs" onchange="HoxtonOwl.midiClient.selectMidiInput(this.value)">
+	<option value="0xff"><i>none</i></option>
+      </select>
+    </p>
+
+    <p>MIDI Out
+      <select id="midiOutputs" onchange="HoxtonOwl.midiClient.selectMidiOutput(this.value)">
+	<option value="0xff"><i>none</i></option>
+      </select>
+    </p>
+
+    <p>
+      <button onclick="HoxtonOwl.midiClient.sendSysexCommand(OpenWareMidiSysexCommand.SYSEX_DEVICE_RESET_COMMAND);"> Device Reset</button>
+      Poll <input id="poll" type="checkbox" checked="true" onclick="setMonitor(this.checked); return true;"/>      
+    </p>
+
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_DEVICE_ID); return false;">device id</button>
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_FIRMWARE_VERSION); return false;">firmware</button>
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_DEVICE_STATS); return false;">device stats</button>
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_PROGRAM_STATS); return false;">program stats</button>
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_PRESET_NAME_COMMAND); return false;">patches</button>
+    <button onclick="sendRequest(OpenWareMidiSysexCommand.SYSEX_CONFIGURATION_COMMAND); return false;">settings</button>
+  </div>
+  
+  <div>
+    <h3>Settings</h3>
+    <!-- <button onclick="HoxtonOwl.midiClient.sendSysexCommand(OpenWareMidiSysexCommand.SYSEX_SETTINGS_STORE); return false;">Store</button> -->
+    <button onclick="HoxtonOwl.midiClient.sendSysexCommand(OpenWareMidiSysexCommand.SYSEX_SETTINGS_RESET); return false;">Reset</button>
+    <button onclick="confirmErase();"> Erase</button>
+  </div>
+
+  <div>
+    <h3>Messages</h3>
+    <button id="clear">Clear</button>
+    <ul id="log"></ul>
+  </div>
+</body>
+</html>
