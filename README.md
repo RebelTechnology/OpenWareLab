@@ -1,7 +1,7 @@
 <!--
 ## OpenWareLab
 Documentation for the OWL family of devices.
-The website for this project is [here](https://pingdynasty.github.io/OpenWareLab/)
+The website for this project is [here](https://www.openwarelab.org/)
 -->
 ## About
 
