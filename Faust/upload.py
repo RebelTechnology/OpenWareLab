@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/usr/bin/env python3
 
 import argparse
 import os
@@ -31,5 +31,5 @@ for i, fname in enumerate(faust_files):
     print()
     print(f'{env["SLOT"]} <= {env["FAUST"]}')
     # upload patch
-    subprocess.run(['make', 'clean', 'realclean', 'store'], cwd=os.path.abspath(args.owl), env=env)
+    subprocess.run(['make', 'clean', 'store'], cwd=os.path.abspath(args.owl), env=env)
     os.remove(dst)
