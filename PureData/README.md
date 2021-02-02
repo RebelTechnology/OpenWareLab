@@ -37,6 +37,8 @@ For hardware that supports input and output triggers, gates, and buttons, these 
 
 For a simple example patch that uses both input and output parameters and buttons, see e.g. this [Witch Pd Template](https://www.rebeltech.org/patch-library/patch/Witch_Template).
 
+Another example using the '@owl' naming method is in this [PdSineOscTest](https://www.rebeltech.org/patch-library/patch/PdSineOscTest) patch.
+
 A library of Heavy compatible Pure data abstractions is available [here](https://github.com/enzienaudio/heavylib)
 
 Also make sure to check out our excellent Pure data [tutorials](https://www.rebeltech.org/tutorials/).
