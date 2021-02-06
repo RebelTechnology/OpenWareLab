@@ -25,6 +25,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [Max Gen](MaxGen)
 * [SOUL](Soul)
 * [Maximilian](Maximilian)
+* [DaisySP](DaisySP)
 
 ## Legacy
 This documentation project is a work in progress. For additional and legacy information please try the [Wayback Machine](https://web.archive.org/web/20161004214151/https://hoxtonowl.com/mediawiki/index.php/Main_Page) or the [OWL Digital Legacy](OWL_Digital/Legacy/) resources.
