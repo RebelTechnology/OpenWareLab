@@ -23,6 +23,10 @@ Input parameters are automatically assigned based on their names: A, B, C, D, et
 
 To send a signal to the CV outputs of your device, simply add one or more extra audio outputs to your gen patch. These will be automatically assigned to CV output parameters: Output 3 will go to output parameter F, out 4 to parameter G et c. Signal values from 0 to 1 are converted to full scale CV output.
 
+## Extended Parameters
+
+Even if your target device has a limited number of hardware controls, you can still use extended parameters which you will be able to control over MIDI. For example, the Lich has knobs and CV for parameters A, B, C and D. If you add parameters E, F, G and H in your patch, you will be able to control them with MIDI CC messages. Same goes for parameters AA to AH, and BA to BH, et c, giving you up to 40 software parameters that can be assigned. The full set of MIDI mappings is available [here](https://www.rebeltech.org/docs/OpenWareMidiControl_8h_source.html).
+
 
 ## MIDI
 
