@@ -51,12 +51,11 @@ Messages are limited to maximum 62 characters long. If you have several [print] 
 
 ## MIDI
 
-Patches can send and receive MIDI messages with the usual Pd Vanilla MIDI I/O objects: `[notein]`, `[bendin]`, `[ctlin]`, `[pgmin]`, and `[noteout]`, `[bendout]`, `[ctlout]`, `[pgmout]`.
+Patches can send and receive MIDI messages with the usual Pd Vanilla MIDI I/O objects: `[notein]`, `[bendin]`, `[ctlin]`, `[touchin]`, `[pgmin]`, and `[noteout]`, `[bendout]`, `[ctlout]`, `[touchout]` `[pgmout]`.
 For an example see [this patch](https://www.rebeltech.org/patch-library/patch/PD_MIDI).
 
 ## Known Bugs and Limitations
 
-* MIDI input objects don't filter when given initialisation arguments: `[notein]`,`[ctlin]` et c always produce *all* messages from *all* channels.
 * Raw MIDI receive and send with `[midiin]` and `[midiout]` is not yet supported.
 * Heavy does not support `[list]` (workaround [here](https://forum.pdpatchrepo.info/topic/12820/replacement-for-list/3)).
 * Heavy does not support numbers in `[unpack]`, e.g. `[unpack 0 0]` gives `Heavy only supports arguments 'f' and 's' to unpack.` Workaround is to use `f` instead, e.g. `[unpack f f]`, and if necessary prime the default values with a `[loadbang]` and `[0 0(`.
