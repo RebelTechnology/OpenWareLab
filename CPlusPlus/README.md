@@ -73,7 +73,7 @@ Output trigger/gates can be controlled with `setButton()`:
 
 
 ### Audio
-The first class you should get familiar with is `FloatArray`, which contains a channel of audio. It is delivered to you in a `SampleBuffer` in the `processAudio()` callback.
+The first class you should get familiar with is `FloatArray`, which contains a single channel of audio. It is delivered to you in an `AudioBuffer` which may hold several channels of audio, in the `processAudio()` callback.
 
 ```
   void processAudio(AudioBuffer &buffer){
@@ -81,13 +81,13 @@ The first class you should get familiar with is `FloatArray`, which contains a c
     FloatArray right = buffer.getSamples(RIGHT_CHANNEL);
 ```
 
-`FloatArray` is written so that you can pretend that it is a an actual array of floats, or a `float*`.
+`FloatArray` is written so that you can pretend that it is an array of floats, or a `float*`.
 
 ```
    float sample = left[i];
 ```
 
-The job of an OWL Patch is to replace the incoming audio samples with some new output audio. The same `FloatArray` object is used for both purposes: first you read the samples, then you write them. A simple stereo gain patch that simply multiplies each sample by a scalar could look like this:
+The job of an OWL Patch is to replace the incoming audio samples with some new output audio. The same `FloatArray` object is used for both purposes: first you read the samples, then you write them. A simple stereo gain patch that multiplies each sample by a scalar could look like this:
 
 ```
 class GainPatch : public Patch {
@@ -113,7 +113,7 @@ public:
 ```
    left.multiply(gain);
 ```
-to scale the level of every sample in the buffer. For more information see the [FloatArray API](https://www.rebeltech.org/docs/classFloatArray.html).
+to scale every sample in the buffer. For more information see the [FloatArray API](https://www.rebeltech.org/docs/classFloatArray.html).
 
 FloatArrays are also very useful for other things, like delay buffers, samples, filter coefficients. To allocate a new FloatArray on the heap, use its static `create()` and `destroy()` methods, and make sure to only do this within the call stack of the patch constructor and destructor. The same applies to many other classes in our library. On an embedded device, we don't want to allocate any memory in the audio processing functions, because this will lead to fragmentation and a heap of problems. So to speak. So instead we call our `create()` and `destroy()` functions like this:
 
