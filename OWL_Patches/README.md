@@ -11,7 +11,7 @@ OWL patches can be programmed in any of the supported languages:
 
 Regardless of language, there are primarily two ways [1] of creating and loading a patch. The easiest is to use our online patch library, but it is also quite straightforward to set up a local, i.e. offline, build environment with simple command line tools.
 
-[1] For Max Gen, there is also an OWL Package available which makes it possible to compile and load patches from within Max. See the [Max Gen](MaxGen) instructions for more details.
+[1] For Max Gen, there is also an OWL Package available which makes it possible to compile and load patches from within Max. See the [Max Gen](../MaxGen) instructions for more details.
 
 ### Online Instructions
 To create an OWL patch using our online compiler, open the [Patch Library](https://www.rebeltech.org/patch-library/) with a Web MIDI enabled browser (e.g. Chrome), log in (create an account if necessary), go to [My Patches](https://www.rebeltech.org/patch-library/patches/my-patches/), and click Create patch. Now upload your patch files, which can be
