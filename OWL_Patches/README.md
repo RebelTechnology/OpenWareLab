@@ -1,13 +1,13 @@
 ## Creating OWL Patches
 
 OWL patches can be programmed in any of the supported languages:
-* [Pure Data](PureData)
-* [FAUST](Faust)
-* [C++](CPlusPlus)
-* [Max Gen](MaxGen)
-* [SOUL](Soul)
-* [Maximilian](Maximilian)
-* [DaisySP](DaisySP)
+* [Pure Data](../PureData)
+* [FAUST](../Faust)
+* [C++](../CPlusPlus)
+* [Max Gen](../MaxGen)
+* [SOUL](../Soul)
+* [Maximilian](../Maximilian)
+* [DaisySP](../DaisySP)
 
 Regardless of language, there are primarily two ways [1] of creating and loading a patch. The easiest is to use our online patch library, but it is also quite straightforward to set up a local, i.e. offline, build environment with simple command line tools.
 
