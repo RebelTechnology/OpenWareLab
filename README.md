@@ -19,7 +19,8 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [OWL Modular](OWL_Modular)
 
 ### Patch Programming
-* [Creating Patches](OWL_Patches)
+* [Creating Patches](OWL_Patches/Creating_Patches.md)
+* [MIDI Mappings](OWL_Patches/MIDI_Mappings.md)
 * [Pure Data](PureData)
 * [FAUST](Faust)
 * [C++](CPlusPlus)

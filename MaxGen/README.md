@@ -4,11 +4,14 @@ The OWL platform is capable of running patches created with Cycling'74 [Max Gen]
 
 To create an OWL Gen patch using our online compiler, open the [Patch Library](https://www.rebeltech.org/patch-library/) with a Web MIDI enabled browser (e.g. Chrome), log in (create an account if necessary), go to [My Patches](https://www.rebeltech.org/patch-library/patches/my-patches/), and click Create patch. Now upload the .cpp and .h files produced by Max Gen, and (optionally) your .gendsp file. Select compilation type `gen`. Click `Save and Compile`, wait for compilation to finish, click `Connect To Device`, and then click `Load` to run the patch on the device. If you want to store it in a memory slot, click `Store` and select which slot to store it in.
 
+More information on creating patches is available [here](../OWL_Patches/Creating_Patches.md).
+
+There is also an OWL Package available which you can download using the Max package manager. [This Cycling'74 article](https://cycling74.com/articles/review-getting-to-know-the-owl-pedal-part-2) explains how to use it.
+
 ## Examples
 
 * [Gen Template Patch](https://www.rebeltech.org/patch-library/patch/GenTemplate)
 * [Gen MIDI Test](https://www.rebeltech.org/patch-library/patch/Gen_MIDI_Test)
-
 
 ## Signal Inputs and Outputs
 
@@ -25,8 +28,7 @@ To send a signal to the CV outputs of your device, simply add one or more extra 
 
 ## Extended Parameters
 
-Even if your target device has a limited number of hardware controls, you can still use extended parameters which you will be able to control over MIDI. For example, the Lich has knobs and CV for parameters A, B, C and D. If you add parameters E, F, G and H in your patch, you will be able to control them with MIDI CC messages. Same goes for parameters AA to AH, and BA to BH, et c, giving you up to 40 software parameters that can be assigned. The full set of MIDI mappings is available [here](https://www.rebeltech.org/docs/OpenWareMidiControl_8h_source.html).
-
+Even if your target device has a limited number of hardware controls, you can still use extended parameters which you can control over MIDI. For example, the Lich has knobs and CV for parameters A, B, C and D. If you add parameters E, F, G and H in your patch, you will be able to control them with MIDI CC messages. Same goes for parameters AA to AH, and BA to BH, et c, giving you up to 40 software parameters that can be assigned. More information on MIDI Mappings is available [here](../OWL_Patches/MIDI_Mappings.md).
 
 ## MIDI
 

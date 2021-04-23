@@ -2,6 +2,8 @@
 
 To make an OWL Patch, all you have to do is create a class that derives from Patch and implement the `processAudio()` method. See the [API Documentation](https://www.rebeltech.org/docs/) for reference.
 
+Practical information on how to create and upload OWL patches is available [here](../OWL_Patches/Creating_Patches.md).
+
 
 ## Memory Management
 

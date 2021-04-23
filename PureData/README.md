@@ -9,6 +9,8 @@ The easiest way to run a Pure Data patch on an OWL device is to use the online c
 
 You can also compile Pd patches offline using [OwlProgram](https://github.com/pingdynasty/OwlProgram) and a local installation of [hvcc](https://github.com/pingdynasty/hvcc.git) (the Heavy compiler; use our fork to take advantage of OWL-specific features and bug fixes). For details on using OwlProgram, see the project readme.
 
+More information on creating patches is available [here](../OWL_Patches/Creating_Patches.md).
+
 ## Inputs and Outputs
 
 ### Parameters
