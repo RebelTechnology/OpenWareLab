@@ -24,7 +24,18 @@ Input parameters are automatically assigned based on their names: A, B, C, D, et
 
 ## Output Parameters
 
-To send a signal to the CV outputs of your device, simply add one or more extra audio outputs to your gen patch. These will be automatically assigned to CV output parameters: Output 3 will go to output parameter F, out 4 to parameter G et c. Signal values from 0 to 1 are converted to full scale CV output.
+Our online compiler generates patch metadata based on the information entered on the patch details page. This metadata is used to assign any 'extra' output channels that your gen~ patch may have. This way you can add CV outs, triggers, and gates in any combination, and assign them to any output.
+
+In addition, the metadata includes all the parameter names entered on the patch details page. This means that on e.g. Magus, instead of showing `A`, `B` and `C`, the parameters can be given proper, meaningful names.
+
+So in order to use output parameters (control voltage outputs) and buttons (gates/triggers) in a Max Gen OWL patch, you have to add an output channel for each one in your gen patch. Parameters should come first, then buttons, in the order they are assigned. E.g. first Parameter F and G, then Button 4 and 5.
+After that, the parameters and buttons must be correctly defined on the patch details page. And when the patch metadata changes, the patch must be recompiled for the changes to have an effect.
+
+In gen~ all outputs are audio signals, so to convert to CV outputs the values will be averaged each block. For triggers and gates, any value within the block that is over 0.5 will set the output high, otherwise it will be low. The values sent to these outputs from gen~ should be from 0.0 to 1.0, which will be converted to full scale CV or trigger/gate output.
+
+A simple example using output parameters can be seen and tried [here](https://www.rebeltech.org/patch-library/patch/Gen_Metadata_Test). It simply maps input parameters A and B to output parameters F and G, and buttons 1 and 2 to output buttons 4 and 5.
+
+If you are using the OWL Watcher within Max, then you will have to follow the link to our patch library to edit the patch details there.
 
 ## Extended Parameters
 
