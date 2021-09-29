@@ -71,7 +71,7 @@ freq = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
 process = os.osc(freq);
 ```
 
-``[OWL:A]`` in parameter label is what binds your device's input to FAUST parameter. Parameter ranges that you can use A-H, AA-AH, BA-BH, CA-CH, DA-DH, PUSH (for pushbutton), ButtonA-ButtonD. This is what FAUST patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those of them that don't have physical control on device.
+``[OWL:A]`` in parameter label is what binds your device's input to FAUST parameter. Parameter ranges that you can use are A-H, AA-AH, BA-BH, CA-CH and DA-DH. The buttons are assigned with B1, B2 et c. This is what FAUST patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those that don't have physical control on device.
 
 It's also possible to specify variable as digit from ``[OWL:0]`` to ``[OWL:39]``. This is convenient if you want to use FAUST [variable substitution in labels](https://faustdoc.grame.fr/manual/syntax/#variable-parts-of-a-label)
 
@@ -91,7 +91,9 @@ process = par(
 
 This patch renders first 8 partials from a wave with base frequency of 60 Hz by default. Each harmonic partial has editable gain. This is called a harmonic oscillator.
 
-FAUST supports several variations for its UI widgets, but with hardware we're using either knobs (often with extra control by voltage) or buttons. So effectively using ``hslider``, ``vslider`` or ``numentry`` widget give us a variable limited by upper and lower limit, while ``button``, ``togglebutton`` and ``checkbutton`` give a boolean variable with on/off state. 
+FAUST supports several variations for its UI widgets, but with hardware we're using either knobs (often with extra control by voltage) or buttons. So effectively using ``hslider``, ``vslider`` or ``numentry`` widget give us a variable limited by upper and lower limit, while ``button``, and ``checkbox`` give a boolean variable with on/off state. 
+
+For boolean inputs, ``button`` is momentary, while ``checkbox`` provides a toggle. The toggle status is typically indicated on the hardware device by a button LED or similar.
 
 
 ## Parameter output
@@ -110,8 +112,25 @@ process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
 
 This patch produces a static sine wave tone initially. But if we connect output from patch point `F` with the input on patch point `A`, then we get a slow frequency modulation in our audio.
 
-A typical way to use CV output works like ``attach(_, hbargraph(...))`` - this allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter F.
+A typical way to use CV output works like ``attach(_, hbargraph(...))`` (or ``vbargraph``). This allows us to bypass incoming audio and just force sending data to bargraph widget. If you're not familiar with ``attach`` primitive, have a look at [information in FAUST docs](https://faustdoc.grame.fr/manual/syntax/#attach-primitive) . The general idea is that its first input is returned unchanged, while output is multiplied by 0. So second parameter is not used, but can force some sort of calculation to be performed. In our case it's generating LFO signal and sending it to widget bound to parameter F.
 Note that output parameters are designated with a trailing '>' in the parameter name, as in `LFO>` above. On the Magus, any of the 20 parameters can be designated either inputs or outputs. On Wizard and Lich, there are two fixed CV outputs, assigned to parameters `F` and `G`.
+
+
+## Gate and LED output
+
+Gate outputs are controlled in the same way as CV outputs, e.g. with ``attach`` and ``hbargraph``. Furthermore, in many cases the hardware button LEDs can be controlled independently of the button input.
+
+Here is an example that sends the inverted button value out to control the B1 LED:
+```
+import("music.lib");
+
+btn1 = button("btn1[OWL:B1]");
+led1 = hbargraph("led2>[OWL:B1]", 0, 1);
+
+process = attach(osc(1000) * btn1, 1-btn1 : led1);
+```
+
+Gate outputs will have hardware specific assignments, e.g. on the Lich it is ``B3``, while the two gate outputs on the Witch are designated ``B5`` and ``B6``. You can also use ``PUSH`` as a more generic name for the first button or gate, and it works with both inputs and outputs.
 
 
 ## MIDI
