@@ -71,3 +71,4 @@ Another difference is that the hardware uses 32-bit single floating point precis
 
 * [Tutorials](https://www.rebeltech.org/tutorials/)
 * [Max gen patches](https://www.rebeltech.org/patch-library/patches/tags/MaxMSP)
+* [Max gen~ operators](https://docs.cycling74.com/max8/vignettes/gen~_operators)
