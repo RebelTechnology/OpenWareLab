@@ -127,7 +127,7 @@ import("music.lib");
 btn1 = button("Button1[OWL:B1]");
 led1 = hbargraph("LED2>[OWL:B1]", 0, 1);
 
-process = attach(osc(1000) * btn1, 1-btn1 : led1) <: _, _;
+process = attach(osc(220) * btn1, 1-btn1 : led1) <: _, _;
 ```
 
 Gate outputs will have hardware specific assignments, e.g. on the Lich it is ``B3``, while the two gate outputs on the Witch are designated ``B5`` and ``B6``. You can also use ``PUSH`` as a more generic name for the first button or gate, and it works with both inputs and outputs.
