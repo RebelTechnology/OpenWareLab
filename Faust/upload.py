@@ -2,12 +2,12 @@
 
 import argparse
 import os
-import shutil
 import subprocess
 
 parser = argparse.ArgumentParser('Upload Faust samples')
 parser.add_argument('--owl', help='path to OwlProgram directory', default='../../OwlProgram/')
 parser.add_argument('--slot', help='slot number used for first patch', default=1, type=int)
+parser.add_argument('--load', help='load patches instead of storing', action=argparse.BooleanOptionalAction)
 
 args = parser.parse_args()
 
@@ -19,17 +19,20 @@ owl = os.path.abspath(args.owl)
 
 env = os.environ.copy()
 
-print(f'Using owl program from {owl}')
+print(f'Using OWL program from {owl}')
+
+env['PATCHSOURCE'] = os.getcwd()
 
 for i, fname in enumerate(faust_files):
-    # copy file without first 2 symbols used for sorting
-    dst = os.path.join(owl, 'PatchSource', fname[2:])
-    shutil.copy(fname, dst)
     # set env vars for current patch processing
-    env['SLOT'] = str(args.slot + i)
-    env['FAUST'] = fname[2:-4]
+    env['FAUST'] = fname[:-4]
+    env['PATCHNAME'] = fname[2:-4]
     print()
-    print(f'{env["SLOT"]} <= {env["FAUST"]}')
-    # upload patch
-    subprocess.run(['make', 'clean', 'store'], cwd=os.path.abspath(args.owl), env=env)
-    os.remove(dst)
+    if args.load:
+       # load patch
+       subprocess.run(['make', 'clean', 'load'], cwd=os.path.abspath(args.owl), env=env, check=True)
+    else:
+       # store patch
+       env['SLOT'] = str(args.slot + i)
+       print(f'{env["SLOT"]} <= {env["FAUST"]}')
+       subprocess.run(['make', 'clean', 'store'], cwd=os.path.abspath(args.owl), env=env, check=True)
