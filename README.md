@@ -5,7 +5,7 @@ The website for this project is [here](https://www.openwarelab.org/)
 -->
 ## About
 
-This is a repository of OWL (OpenWareLaboratory) documentation. OWL is an open source, open hardware embedded audio platform. It includes the [OpenWare](https://github.com/pingdynasty/OpenWare) firmware codebase which runs on several hardware products, including OWL Pedal, OWL Modular, Alchemist, Wizard, Magus, BioSignals, Noctua and OWL Rack.
+This is a repository of OWL (OpenWareLaboratory) documentation. OWL is an open source, open hardware embedded audio platform. It includes the [OpenWare](https://github.com/pingdynasty/OpenWare) firmware codebase which runs on several hardware products, including OWL Pedal, OWL Modular, Alchemist, Wizard, Magus, Witch, Lich, BioSignals, Noctua and OWL Rack.
 
 The OWL platform is actively developed by [Rebel Technology](https://www.rebeltech.org).
 
@@ -15,6 +15,7 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 * [Wizard](Wizard)
 * [Magus](Magus)
 * [Lich](Lich)
+* [Witch](Witch)
 * [OWL Pedal](OWL_Pedal)
 * [OWL Modular](OWL_Modular)
 
