@@ -15,7 +15,7 @@
   <script>
     function loadTestPatch(){
 	HoxtonOwl.midiClient.sendCc(7, 127); // set max volume
-	sendProgramFromUrl('https://www.rebeltech.org/api/builds/5fb33858c4b91d679aecd9b9?format=sysx&amp;download=1')
+	sendProgramFromUrl('https://www.rebeltech.org/api/builds/5fb33858c4b91d679aecd9b9?format=sysex&amp;download=1')
 	    .then(function(){ sendProgramRun(); }, function(err){ console.error(err); });			    
     }
     function confirmErase(){
@@ -75,8 +75,8 @@
   <div>
     <h3>Status</h3>
     <p id="ourstatus">Not Connected</p>
-    <p>Patch loaded: <span id="patchname">&nbsp;</span></p>
-    <p>Module reading: <span id="patchmessage">&nbsp;</span></p>
+    <p>Patch loaded: <span id="patchname"> </span></p>
+    <p>Module reading: <span id="patchmessage"> </span></p>
   </div>
 
   <div>
@@ -122,9 +122,9 @@
       <li>Click <button type="button" onclick="loadTestPatch();">Load test patch</button></li>
       <li>Connect the Left output to the Left input, and simultaneously to a voltmeter. We recommend a three digit voltimeter</li>
       <li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(29, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(29, 0);">Test High</button> and verify that both Module and voltmeter readings are near +5 Volt</li>
-      <p>Module High reading: <input id="test-high">&nbsp;</input> Volt</p>
+      <p>Module High reading: <input id="test-high"> </input> Volt</p>
       <li>Press and hold <button type="button" onmousedown="HoxtonOwl.midiClient.sendCc(30, 127);" onmouseup="HoxtonOwl.midiClient.sendCc(30, 0);">Test Low</button> and verify that both Module and voltmeter readings are near -5 Volt</li>
-      <p>Module Low reading: <input id="test-low">&nbsp;</input> Volt</p>
+      <p>Module Low reading: <input id="test-low"> </input> Volt</p>
     </ol>
   </div>
 

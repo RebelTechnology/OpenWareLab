@@ -319,6 +319,6 @@ function sendProgramFromUrl(url, resolve){
 }
 
 function loadPatchFromServer(patchId){
-    return sendProgramFromUrl(API_END_POINT + '/builds/' + patchId + '?format=sysx&amp;download=1');
+    return sendProgramFromUrl(API_END_POINT + '/builds/' + patchId + '?format=sysex&amp;download=1');
 }
 
