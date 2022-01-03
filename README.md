@@ -42,4 +42,4 @@ This documentation project is a work in progress. For additional and legacy info
 Check out our [website](https://www.rebeltech.org), in particular the [tutorials](https://www.rebeltech.org/tutorials/)!
 
 ## Get Involved!
-We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with more than 250 published audio patches to explore.
+We have an active community with a [dedicated forum](https://community.rebeltech.org/). There is also the OWL [Patch Library](https://www.rebeltech.org/patch-library) with hundreds of audio patches to explore.
