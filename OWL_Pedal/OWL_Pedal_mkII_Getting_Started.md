@@ -57,6 +57,14 @@ It is easy to make your own patches, and you can use any of our supported langua
 ## Connecting a Footswitch
 A single or dual footswitch pedal can be connected to the Exp input instead of an expression pedal. In this case, configure the Expression Pedal mode to `FOOTSWITCH_TS` (single) or `FOOTSWITCH_TRS` (dual with TRS connector). The single footswitch controls button B1, while dual controls B1 and B2.
 
+## Support and Community
+To get updates, patches and to join our online OWL community please visit the website: https://www.rebeltech.org
+For development documentation, please visit the documentation website: https://www.openwarelab.org/
+For support, email us: `info at rebeltech dot org`
+
+Have a lot of fun!
+Martin Klang and the Rebel Technology team
+
 ## Default Patches
 Your OWL Pedal mkII comes with a small selection of factory installed patches to get you started.
 
@@ -70,7 +78,8 @@ Parameters:
  * E: Filter Duck
  * B1: Tap Tempo
  * B2: Lock Loop
-https://www.rebeltech.org/patch-library/patch/Filter_Delay
+
+Link: [Filter Delay](https://www.rebeltech.org/patch-library/patch/Filter_Delay)
 
 ### 2: Feedback Chorus
 Classic triphase chorus with feedback for more extreme effects.
@@ -81,10 +90,11 @@ Parameters:
  * D: Mix
  * E: Speedup
  * B1: Tap Tempo
-https://www.rebeltech.org/patch-library/patch/Feedback_Chorus
+
+Link: [Feedback Chorus](https://www.rebeltech.org/patch-library/patch/Feedback_Chorus)
 
 ### 3: Stereo Phaser
-Phaser with continuously adjustable LFO shape and feedback.
+Phaser with feedback and continuously adjustable LFO shape.
 Parameters:
  * A: Rate
  * B: Shape
@@ -92,7 +102,8 @@ Parameters:
  * D: Mix
  * E: Speedup
  * B1: Tap Tempo
-https://www.rebeltech.org/patch-library/patch/Stereo_Phaser
+
+Link: https://www.rebeltech.org/patch-library/patch/Stereo_Phaser
 
 ### 4: Multimode Filter
 Resonant filter, continuously morphed between low, band and high pass modes.
@@ -102,7 +113,8 @@ Parameters:
  * C: Filter Mode
  * D: Mix
  * E: Duck
-https://www.rebeltech.org/patch-library/patch/Multimode_Filter
+
+Link: [Multimode Filter](https://www.rebeltech.org/patch-library/patch/Multimode_Filter)
 
 ### 5: DroneBox
 Sympathetic Resonance Generator by Oli Larkin. An OWL classic!
@@ -111,7 +123,8 @@ Parameters:
  * B: Fine Pitch
  * C: Decay
  * D: Mix
-https://www.rebeltech.org/patch-library/patch/DroneBox
+
+Link: [DroneBox](https://www.rebeltech.org/patch-library/patch/DroneBox)
 
 ### 6: Owlgazer Shimmer Reverb
 A stereo ambient reverberation with a shimmer effect by Xavier Godart.
@@ -120,7 +133,8 @@ Parameters:
  * B: Tone
  * C: Shimmer
  * D: Mix
-https://www.rebeltech.org/patch-library/patch/Owlgazer_Shimmer_Reverb
+
+Link: [Owlgazer Shimmer Reverb](https://www.rebeltech.org/patch-library/patch/Owlgazer_Shimmer_Reverb)
 
 ### 7: Distorsionista
 Intense multi-band distortion using two wave-shaper combinations, by Paul Stanghan.
@@ -129,7 +143,8 @@ Parameters:
  * B: Mid Drive
  * C: High Drive
  * D: Distortion
-https://www.rebeltech.org/patch-library/patch/Stereo_Distorsionista
+
+Link: [Stereo Distorsionista](https://www.rebeltech.org/patch-library/patch/Stereo_Distorsionista)
 
 ### 8: Rings Reverb
 Reverb from MI Rings/Element by Émilie Gillet, rewritten for OWL by Stas Shtin.
@@ -140,12 +155,5 @@ Parameters:
  * D: Mix
  * E: Expression
  * B1: Max Reverb
-https://www.rebeltech.org/patch-library/patch/Rings_Stereo_Reverb
 
-## Support and Community
-To get updates, patches and to join our online OWL community please visit the website: https://www.rebeltech.org
-For development documentation, please visit the documentation website: https://www.openwarelab.org/
-For support, email us: `info at rebeltech dot org`
-
-Have a lot of fun!
-Martin Klang and the Rebel Technology team
+Link: [Rings Stereo Reverb](https://www.rebeltech.org/patch-library/patch/Rings_Stereo_Reverb)
