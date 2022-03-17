@@ -12,11 +12,12 @@ The OWL platform is actively developed by [Rebel Technology](https://www.rebelte
 ## Documentation
 ### Devices 
 * [Alchemist](Alchemist)
+* [BioSignals](BioSignals)
 * [Genius](Genius)
 * [Lich](Lich)
 * [Magus](Magus)
-* [OWL Pedal](OWL_Pedal)
 * [OWL Modular](OWL_Modular)
+* [OWL Pedal](OWL_Pedal)
 * [Witch](Witch)
 * [Wizard](Wizard)
 
