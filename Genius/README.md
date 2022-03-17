@@ -6,5 +6,3 @@ The Genius is a Eurorack DSP processor based on the OWL3 architecture, designed 
 
 ### Instructions
 * [Genius Getting Started](Genius_Getting_Started.md) (as [pdf](Genius%20Getting%20Started.pdf))
-
-
