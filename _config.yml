@@ -1,1 +1,5 @@
+title: OpenWareLab
+description: Documentation for the OWL family of devices
+url: www.openwarelab.org
+baseurl: /
 theme: jekyll-theme-minimal
