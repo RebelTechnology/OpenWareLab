@@ -15,8 +15,22 @@ There is also an OWL Package available which you can download using the Max pack
 
 ## Signal Inputs and Outputs
 
-Audio signals enter and leave the patch by `in` and `out` objects; index 1 and 2 correspond to left and right audio inputs. Full scale signals are in the range -1 to 1.
+Audio and CV signals enter and leave the patch by `in` and `out` objects.
 
+In L : audio In automatically scaled to a -1 to 1 signal out of the `in 1` object in gen~
+       CV In L (from 0 to 10V), scaled to a -1 to 1 signal out of the `in 1` object in gen~. Don’t know why but the signal is inverted in gen~, so you’ve to invert it back with the `* -1` object.
+
+In R : audio In automatically scaled to a -1 to 1 signal out of the `in 2` object in gen~
+       CV In R (from 0 to 10V), scaled to a -1 to 1 signal out of the `in 2` object in gen~. Same here, need to be inverted.
+
+CVs In (A, B, C D) from 0 to 10 V are added to the corresponding knob value (from 0 to 1) and scaled to 0 to 1 before entering the gen~ `param` object.
+By default, you get a scaled signal from `@min 0` to `@max 1` out of `param A`, or B, or C, or D object in gen~. The `@min` and `@max` param object attributes clamp and scale the signal again if needed.
+
+If you set A CV full clockwise and pot A full clockwise too, you get a 0 to 11 signal which is clamped to 0 to 1. It is scaled/clamped again by the `@min` and `@max ` attributes from the `param` object in max. If you use A CV for pitch control from an external sequencer, you’ll notice some strange behaviours. In this particular case, what you can do is setting the A CV full clockwise and use the pot A as an offset.
+
+For instance, if you use a Moog Mother 32 as a sequencer for your Lich, you’ll plug the KB output from the Mama to the A CV full clockwise of the Lich. Thinking that the mother KB output range is from -4V to +4V, every note that is under 0V will be a C0. You can then use the pot A to offset the A CV value by +4V !
+
+Gate 1 and 2 normalized with the corresponding buttons: signal of 0 or 1 from `param ButtonA` or B object in gen~ according to the state of the gate in signal.
 
 ## Input Parameters
 
@@ -31,7 +45,13 @@ In addition, the metadata includes all the parameter names entered on the patch 
 So in order to use output parameters (control voltage outputs) and buttons (gates/triggers) in a Max Gen OWL patch, you have to add an output channel for each one in your gen patch. Parameters should come first, then buttons, in the order they are assigned. E.g. first Parameter F and G, then Button 4 and 5.
 After that, the parameters and buttons must be correctly defined on the patch details page. And when the patch metadata changes, the patch must be recompiled for the changes to have an effect.
 
-In gen~ all outputs are audio signals, so to convert to CV outputs the values will be averaged each block. For triggers and gates, any value within the block that is over 0.5 will set the output high, otherwise it will be low. The values sent to these outputs from gen~ should be from 0.0 to 1.0, which will be converted to full scale CV or trigger/gate output.
+In gen~ all outputs are audio signals, so to convert to CV outputs the values will be averaged each block. For triggers and gates, any value within the block that is over 0.5 will set the output high, otherwise it will be low. The values sent to these outputs (`out 3`, `out 4` and `out 5`) from gen~ should be scaled from 0.0 to 1.0 before entering to “out” object in gen~. Signal will be converted to full scale unipolar CV or trigger/gate output.
+
+You can offset outputs 3 or 4 by adding tenths of volts. For instance adding 0.5 to the signal before leaving gen~ will offset the output by 5 V.
+
+Finally, you’ll have to define out 3, out 4 and out 5 parameters using the online compiler as follow : https://community.rebeltech.org/uploads/default/original/1X/bb43042ec39b7fba9c945bf5137c2be407f34984.png
+
+Don't forget to compile again the code before loading it to Lich : https://community.rebeltech.org/uploads/default/original/1X/19736bd36b247a9c7ae9c35b2bab91f23e32f354.jpeg
 
 A simple example using output parameters can be seen and tried [here](https://www.rebeltech.org/patch-library/patch/Gen_Metadata_Test). It simply maps input parameters A and B to output parameters F and G, and buttons 1 and 2 to output buttons 4 and 5.
 
