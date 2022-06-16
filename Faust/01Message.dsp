@@ -2,4 +2,4 @@ declare message "Hello\nmake some noise";
 
 import("stdfaust.lib");
 
-process = no.noise : *(0.5);
+process = no.noise : *(0.5) <: _, _;

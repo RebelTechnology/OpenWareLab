@@ -38,7 +38,7 @@ This compiles the patch and stores it on the device in memory slot 5.
 Simplest patch in FAUST would look like this:
 
 ```
-process = _;
+process = _, _;
 ```
 
 What it does is takes input from first audio channel and sends it to output without any modifications.
@@ -55,7 +55,7 @@ declare message "Hello\nmake some noise";
 
 import("stdfaust.lib");
 
-process = no.noise : *(0.5);
+process = no.noise : *(0.5) <: _, _;
 ```
 
 Here the first line adds a metadata declaration, second line imports FAUST's standard library and the last line sends output from a white noise generator to output channel 1 with gain reduced by half.
@@ -68,7 +68,7 @@ You can control patch parameters by binding them with FAUST UI controls. Let's l
 ```
 import("stdfaust.lib");
 freq = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
-process = os.osc(freq);
+process = os.osc(freq) <: _, _;
 ```
 
 ``[OWL:A]`` in parameter label is what binds your device's input to FAUST parameter. Parameter ranges that you can use are A-H, AA-AH, BA-BH, CA-CH and DA-DH. The buttons are assigned with B1, B2 et c. This is what FAUST patches support, but the actual parameters that have physical inputs on a particular device would be more limited. You would have to use MIDI to access those that don't have physical control on device.
@@ -107,7 +107,7 @@ freq     = hslider("Frequency[OWL:A]", 60, 60, 440, 1);
 lfo_freq = hslider("LFO frequency[OWL:B]", 0.3, 0.01, 1.0, 0.01) : si.smoo;
 lfo_out  = hbargraph("LFO>[OWL:F]", -1, 1);
 
-process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out);
+process = attach(os.osc(freq), os.osc(lfo_freq) : lfo_out) <: _, _;
 ```
 
 This patch produces a static sine wave tone initially. But if we connect output from patch point `F` with the input on patch point `A`, then we get a slow frequency modulation in our audio.
@@ -124,10 +124,10 @@ Here is an example that sends the inverted button value out to control the B1 LE
 ```
 import("music.lib");
 
-btn1 = button("btn1[OWL:B1]");
-led1 = hbargraph("led2>[OWL:B1]", 0, 1);
+btn1 = button("Button1[OWL:B1]");
+led1 = hbargraph("LED2>[OWL:B1]", 0, 1);
 
-process = attach(osc(1000) * btn1, 1-btn1 : led1);
+process = attach(osc(220) * btn1, 1-btn1 : led1) <: _, _;
 ```
 
 Gate outputs will have hardware specific assignments, e.g. on the Lich it is ``B3``, while the two gate outputs on the Witch are designated ``B5`` and ``B6``. You can also use ``PUSH`` as a more generic name for the first button or gate, and it works with both inputs and outputs.
@@ -147,7 +147,7 @@ gain = hslider("gain", 0.0, 0.0, 1.0, 0.001);
 gate = button("gate");
 sustain = hslider("Sustain[OWL:A]", 5.0, 1.0, 10.0, 0.01);
 
-process = sy.combString(freq, gain * sustain, gate);
+process = sy.combString(freq, gain * sustain, gate) <: _, _;
 ```
 
 First of all, you must enable MIDI with metadata declaration.
